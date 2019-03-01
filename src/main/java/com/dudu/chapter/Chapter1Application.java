@@ -1,6 +1,7 @@
 package com.dudu.chapter;
 
 import com.alibaba.fastjson.JSONObject;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,10 +15,17 @@ import java.util.List;
 @SpringBootApplication
 public class Chapter1Application
 {
+
+    @Value("${com.language.name}")
+    private String name;
+    @Value("${com.language.tool}")
+    private String tool;
+
+
     @RequestMapping("/")
     public String index()
     {
-        return "Hello Spring boot";
+        return "Hello Spring boot language is "+name+" by "+tool;
     }
     @RequestMapping(value = "/json",method = RequestMethod.POST)
     public JSONObject getJson(String a,String b)
